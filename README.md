@@ -66,11 +66,88 @@ These slicers allow stakeholders to dynamically explore insights by geography, b
 
 ---
 
-## 🛠️ Tools & Technologies
+🔹 SQL Analysis (PostgreSQL)
 
-* **Power BI** – Data modeling, DAX, and visualization
-* **SQL** – Data extraction and aggregation
-* **Excel / CSV** – Data preprocessing
+This project uses PostgreSQL to clean, transform, and analyze restaurant data before visualization in Power BI.
+
+🧹 Data Cleaning Queries
+-- Remove rows with missing critical values
+DELETE FROM restaurants
+WHERE aggregate_rating IS NULL
+   OR average_cost_for_two IS NULL
+   OR city IS NULL;
+
+-- Remove invalid cost values
+DELETE FROM restaurants
+WHERE average_cost_for_two <= 0;
+
+-- Standardize city names
+UPDATE restaurants
+SET city = INITCAP(TRIM(city));
+
+📊 KPI Calculations
+-- Total restaurants in India
+SELECT COUNT(*) AS total_restaurants
+FROM restaurants;
+
+-- Total cuisines analyzed
+SELECT COUNT(DISTINCT cuisine_name) AS total_cuisines
+FROM restaurant_cuisines;
+
+-- Average restaurant rating
+SELECT ROUND(AVG(aggregate_rating), 2) AS average_rating
+FROM restaurants;
+
+-- Median cost for two
+SELECT
+  PERCENTILE_CONT(0.5)
+  WITHIN GROUP (ORDER BY average_cost_for_two) AS median_cost_for_two
+FROM restaurants;
+
+🍽️ Value-for-Money Analysis (Cuisine Level)
+SELECT
+  rc.cuisine_name,
+  COUNT(*) AS total_restaurants,
+  ROUND(AVG(r.aggregate_rating) / AVG(r.average_cost_for_two), 2) AS value_for_money_score
+FROM restaurants r
+JOIN restaurant_cuisines rc
+  ON r.restaurant_id = rc.restaurant_id
+WHERE r.average_cost_for_two > 0
+GROUP BY rc.cuisine_name
+HAVING COUNT(*) >= 50
+ORDER BY value_for_money_score DESC
+LIMIT 10;
+
+🌆 City-Level Value-for-Money Analysis
+SELECT
+  city,
+  COUNT(*) AS total_restaurants,
+  ROUND(AVG(aggregate_rating) / AVG(average_cost_for_two), 2) AS value_for_money_index
+FROM restaurants
+WHERE average_cost_for_two > 0
+  AND aggregate_rating IS NOT NULL
+GROUP BY city
+HAVING COUNT(*) >= 20
+ORDER BY value_for_money_index DESC
+LIMIT 10;
+
+
+🔄 Data Pipeline Overview
+
+Raw restaurant data imported into PostgreSQL
+SQL used for:
+              Data cleaning
+              KPI calculations
+              Value-for-money metrics
+Cleaned data connected to Power BI
+Interactive dashboards built with slicers & KPIs
+
+🛠️ Tools & Technologies
+
+PostgreSQL – Data cleaning & analysis
+SQL – Aggregations, KPIs, indexing logic
+Power BI – Interactive dashboards & visual storytelling
+GitHub – Version control & portfolio hosting
 
 ---
 
