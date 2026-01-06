@@ -87,53 +87,89 @@ DELETE FROM restaurants
 WHERE average_cost_for_two <= 0;
 
 -- Standardize city names
+
 UPDATE restaurants
+
 SET city = INITCAP(TRIM(city));
 
 📊 KPI Calculations
+
 -- Total restaurants in India
+
 SELECT COUNT(*) AS total_restaurants
+
 FROM restaurants;
 
 -- Total cuisines analyzed
+
 SELECT COUNT(DISTINCT cuisine_name) AS total_cuisines
+
 FROM restaurant_cuisines;
 
 -- Average restaurant rating
+
 SELECT ROUND(AVG(aggregate_rating), 2) AS average_rating
+
 FROM restaurants;
 
 -- Median cost for two
+
 SELECT
+
   PERCENTILE_CONT(0.5)
+  
   WITHIN GROUP (ORDER BY average_cost_for_two) AS median_cost_for_two
+  
 FROM restaurants;
 
 🍽️ Value-for-Money Analysis (Cuisine Level)
+
 SELECT
+
   rc.cuisine_name,
+  
   COUNT(*) AS total_restaurants,
+  
   ROUND(AVG(r.aggregate_rating) / AVG(r.average_cost_for_two), 2) AS value_for_money_score
+  
 FROM restaurants r
+
 JOIN restaurant_cuisines rc
+
   ON r.restaurant_id = rc.restaurant_id
+  
 WHERE r.average_cost_for_two > 0
+
 GROUP BY rc.cuisine_name
+
 HAVING COUNT(*) >= 50
+
 ORDER BY value_for_money_score DESC
+
 LIMIT 10;
 
 🌆 City-Level Value-for-Money Analysis
+
 SELECT
+
   city,
+  
   COUNT(*) AS total_restaurants,
+  
   ROUND(AVG(aggregate_rating) / AVG(average_cost_for_two), 2) AS value_for_money_index
+  
 FROM restaurants
+
 WHERE average_cost_for_two > 0
+
   AND aggregate_rating IS NOT NULL
+  
 GROUP BY city
+
 HAVING COUNT(*) >= 20
+
 ORDER BY value_for_money_index DESC
+
 LIMIT 10;
 
 
