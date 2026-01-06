@@ -73,12 +73,17 @@ This project uses PostgreSQL to clean, transform, and analyze restaurant data be
 🧹 Data Cleaning Queries
 -- Remove rows with missing critical values
 DELETE FROM restaurants
+
 WHERE aggregate_rating IS NULL
+
    OR average_cost_for_two IS NULL
+   
    OR city IS NULL;
 
 -- Remove invalid cost values
+
 DELETE FROM restaurants
+
 WHERE average_cost_for_two <= 0;
 
 -- Standardize city names
