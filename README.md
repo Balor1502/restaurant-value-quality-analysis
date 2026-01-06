@@ -1,43 +1,34 @@
-# Restaurant Value & Quality Analysis (India)
+# Restaurant Value & Quality Analysis – India
 
-## 📌 Project Overview
-This project analyzes Indian restaurants to identify the best value-for-money cuisines and cities by combining pricing, ratings, and popularity data.
+## 📌 Overview
+An end-to-end data analytics project analyzing Indian restaurants to identify
+top value-for-money cuisines and cities using Power BI.
 
-## 🎯 Objectives
-- Evaluate restaurant quality vs pricing
-- Identify top cuisines offering high value
-- Compare cities based on affordability and ratings
-- Enable interactive exploration using Power BI
+## 🎯 Business Questions
+- Which cuisines offer the best value for money?
+- Which cities perform best when cost, ratings, and availability are combined?
+- Does higher price always mean higher quality?
 
-## 🛠️ Tools & Technologies
-- Power BI
-- DAX
+## 🛠️ Tools Used
+- Power BI (DAX, Power Query)
 - SQL
-- Python
 - Excel
 
-## 📊 Key Features
-- Custom **Value for Money Index**
-- Executive KPIs (ratings, cost, restaurant count)
-- Price vs Rating scatter analysis
-- Top cuisines and cities with safety filters
-- Dynamic slicers (City, Cuisine, Cost)
+## 📊 Key KPIs
+- Total Restaurants: 8,651
+- Total Cuisines: 90
+- Average Rating: 2.52
+- Median Cost for Two: ₹450
 
-## 📂 Repository Structure
-data/ → Cleaned datasets
-sql/ → SQL schema & views
-powerbi/ → Power BI dashboard (.pbix)
-screenshots/ → Dashboard images
+## 🔍 Key Insights
+- Street Food and Mithai provide the highest value-for-money
+- Tier-2 cities outperform metros on affordability
+- Price and rating show weak correlation
 
-## 📸 Dashboard Preview
-
-![Dashboard](Restaurant_value_analysis/dashboard.png)
-
-## 🚀 Insights
-- Street Food and Mithai deliver the highest value-for-money
-- Cities like Bhopal and Bhubaneswar outperform metro cities on affordability
-- Higher price does not always correlate with higher ratings
+## 📂 Files
+- `Restaurant_Value_Analysis.pbix` → Interactive Power BI dashboard
 
 ## 👤 Author
 **Chinmay Chalke**  
-LinkedIn: https://www.linkedin.com/in/chinmay-chalke
+Aspiring Data Analyst  
+
