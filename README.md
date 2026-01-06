@@ -20,6 +20,10 @@ top value-for-money cuisines and cities using Power BI.
 - Average Rating: 2.52
 - Median Cost for Two: ₹450
 
+## 📸 Dashboard Preview
+![Dashboard](Screenshot/Dashboard.png)
+![Value for money](Screenshot/Value for money.png)
+
 ## 🔍 Key Insights
 - Street Food and Mithai provide the highest value-for-money
 - Tier-2 cities outperform metros on affordability
