@@ -31,7 +31,7 @@ screenshots/ → Dashboard images
 
 ## 📸 Dashboard Preview
 
-
+![Dashboard](Restaurant_value_analysis/dashboard.png)
 
 ## 🚀 Insights
 - Street Food and Mithai deliver the highest value-for-money
