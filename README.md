@@ -56,13 +56,19 @@ These slicers allow stakeholders to dynamically explore insights by geography, b
 
 ## 📸 Dashboard Preview
 
-### Overall Dashboard
 
-![Dashboard](Dashboard%20Screenshots/Dashboard.png)
+## 📊 Power BI Dashboard Overview
 
-### Value for Money Analysis
+<p align="center">
+  <img src="Dashboard.png" width="850">
+</p>
 
-![Value for Money](Dashboard%20Screenshots/Value%20for%20money.png)
+## 💰 Value for Money Insights
+
+<p align="center">
+  <img src="Value for money.png" width="850">
+</p>
+
 
 ---
 
